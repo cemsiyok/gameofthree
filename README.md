@@ -1,4 +1,4 @@
-# gameofthree
+# Game of Three
 
 Takeaway Java Assignment
 
