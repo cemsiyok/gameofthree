@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class PlayerRepository implements BaseRepository<Integer, Player> {
 
-    private Map<String, Player> players = new ConcurrentHashMap<>();
-    private Map<String, Integer> playerNameByIdIndex = new ConcurrentHashMap<>();
+    private final Map<String, Player> players = new ConcurrentHashMap<>();
+    private final Map<String, Integer> playerNameByIdIndex = new ConcurrentHashMap<>();
     private final AtomicInteger atomicInteger = new AtomicInteger();
 
     @Override

@@ -16,9 +16,8 @@ import java.util.stream.Collectors;
 @Service
 public class GameRoomRepository implements BaseRepository<Integer, GameRoom> {
 
-    private Map<String, GameRoom> gameRoomCache = new ConcurrentHashMap<>();
+    private final Map<String, GameRoom> gameRoomCache = new ConcurrentHashMap<>();
     private final AtomicInteger atomicInteger = new AtomicInteger();
-
 
     public List<GameRoom> getAllByState(GameState gameState) {
         return gameRoomCache.values().stream()
