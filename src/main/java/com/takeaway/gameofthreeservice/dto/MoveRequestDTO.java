@@ -22,7 +22,7 @@ public class MoveRequestDTO {
     private Integer playerId;
 
     @Min(value = -1)
-    @Max(value = -1)
+    @Max(value = 1)
     private Integer addedValue;
 
     private boolean playAutomatically;
