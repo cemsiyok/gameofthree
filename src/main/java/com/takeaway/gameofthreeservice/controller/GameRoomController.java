@@ -72,7 +72,7 @@ public class GameRoomController {
     @PatchMapping("/{id}/move/{playerid}")
     public GameRoomDTO makeMove(@PathVariable Integer id,
                                 @PathVariable(value = "playerid") Integer playerId,
-                                @RequestBody MoveRequestDTO request) {
+                                @Validated @RequestBody MoveRequestDTO request) {
         try {
             request.setGameRoomId(id);
             request.setPlayerId(playerId);
