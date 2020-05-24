@@ -12,7 +12,7 @@ End-points served by this API can be easly watched by navigating following url: 
 
 Note that I spent approximately 1.5 days to create this project, although I didn't manage to complete all functional requirements of the project by your deadline.
  
-Improvements areas: 
+Improvement areas: 
  - Client side development
  - Code coverage 
  - Documentation
