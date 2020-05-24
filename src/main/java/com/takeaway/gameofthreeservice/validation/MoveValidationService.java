@@ -19,11 +19,11 @@ public class MoveValidationService {
 
     public void validate(MoveRequestDTO moveRequestDTO) {
         GameRoom gameRoom = gameRoomRepository.findById(moveRequestDTO.getGameRoomId());
-        if (!gameRoom.getFirstPlayerId().equals(moveRequestDTO.getPlayerId()) && !gameRoom.getSecondPlayerId().equals(moveRequestDTO.getPlayerId())) {
-            throw new UnsupportedMoveException("Player doesn't belong to current game room");
-        }
         if (!gameRoom.getState().isMoveAcceptable()) {
             throw new UnsupportedMoveException("Game can not accept a next move");
+        }
+        if (!gameRoom.getFirstPlayerId().equals(moveRequestDTO.getPlayerId()) && !gameRoom.getSecondPlayerId().equals(moveRequestDTO.getPlayerId())) {
+            throw new UnsupportedMoveException("Player doesn't belong to current game room");
         }
         if (gameRoom.getMoves().isEmpty()) {
             if (gameRoom.getFirstPlayerId().equals(moveRequestDTO.getPlayerId())) {
