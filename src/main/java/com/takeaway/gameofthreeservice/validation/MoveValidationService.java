@@ -25,20 +25,13 @@ public class MoveValidationService {
         if (!gameRoom.getFirstPlayerId().equals(moveRequestDTO.getPlayerId()) && !gameRoom.getSecondPlayerId().equals(moveRequestDTO.getPlayerId())) {
             throw new UnsupportedMoveException("Player doesn't belong to current game room");
         }
-        if (gameRoom.getMoves().isEmpty()) {
-            if (gameRoom.getFirstPlayerId().equals(moveRequestDTO.getPlayerId())) {
-                throw new UnsupportedMoveException("Same player can't make successive moves");
-            }
-        } else if (gameRoom.getMoves().getLast().getPlayerId().equals(moveRequestDTO.getPlayerId())) {
+        if (gameRoom.getMoves().getLast().getPlayerId().equals(moveRequestDTO.getPlayerId())) {
             throw new UnsupportedMoveException("Same player can't make successive moves");
         }
         boolean isAddedValueInvalid = !moveRequestDTO.isPlayAutomatically()
                 && (Objects.isNull(moveRequestDTO.getAddedValue()) || (gameRoom.getCurrentNumber() + moveRequestDTO.getAddedValue()) % 3 != 0);
         if (isAddedValueInvalid) {
             throw new UnsupportedMoveException("Added value has to make new number divisible by 3");
-        }
-        if (!moveRequestDTO.isPlayAutomatically() && (moveRequestDTO.getAddedValue() + gameRoom.getCurrentNumber()) % 3 != 0) {
-            throw new UnsupportedMoveException("Added value has to be provided when manuel move was selected as a move type");
         }
     }
 }
