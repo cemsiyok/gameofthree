@@ -21,6 +21,7 @@ import java.util.List;
 public class DefaultGameService implements GameService {
 
     private static final int[] NUMBERS = {-1, 0, 1};
+    private final static int DIVIDER = 3;
 
     private final GameRoomRepository gameRoomRepository;
     private final PlayerRepository playerRepository;
@@ -87,7 +88,7 @@ public class DefaultGameService implements GameService {
         Integer addedNumber;
         if (moveRequestDTO.isPlayAutomatically()) {
             int i = 0;
-            while ((currentNumber + NUMBERS[i]) % 3 != 0) {
+            while ((currentNumber + NUMBERS[i]) % DIVIDER != 0) {
                 i++;
             }
             addedNumber = NUMBERS[i];
@@ -102,7 +103,7 @@ public class DefaultGameService implements GameService {
                 .build();
         gameRoom.getMoves().addLast(move);
 
-        currentNumber = (currentNumber + addedNumber) / 3;
+        currentNumber = (currentNumber + addedNumber) / DIVIDER;
         gameRoom.setCurrentNumber(currentNumber);
         if (currentNumber == 1) {
             gameRoom.setState(GameState.FINISHED);

@@ -11,6 +11,7 @@ import java.util.Objects;
 @Service
 public class MoveValidationService {
 
+    private final static int DIVIDER = 3;
     private final GameRoomRepository gameRoomRepository;
 
     public MoveValidationService(GameRoomRepository gameRoomRepository) {
@@ -29,7 +30,7 @@ public class MoveValidationService {
             throw new UnsupportedMoveException("Same player can't make successive moves");
         }
         boolean isAddedValueInvalid = !moveRequestDTO.isPlayAutomatically()
-                && (Objects.isNull(moveRequestDTO.getAddedValue()) || (gameRoom.getCurrentNumber() + moveRequestDTO.getAddedValue()) % 3 != 0);
+                && (Objects.isNull(moveRequestDTO.getAddedValue()) || (gameRoom.getCurrentNumber() + moveRequestDTO.getAddedValue()) % DIVIDER != 0);
         if (isAddedValueInvalid) {
             throw new UnsupportedMoveException("Added value has to make new number divisible by 3");
         }
